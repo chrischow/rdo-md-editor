@@ -1,7 +1,8 @@
 import {  useEffect, useRef, useState } from 'react';
-import MDEditor from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 import mermaid from 'mermaid';
 // import rehypeSanitize from 'rehype-sanitize';
+import '@uiw/react-md-editor/markdown-editor.css';
 
 const Code = ({inline, children=[], className, ...props}: any) => {
   const demoid = useRef('1337');
@@ -63,14 +64,41 @@ export default function MarkdownEditor() {
         onChange={(newValue="") => setValue(newValue)}
         textareaProps={{ placeholder: "Input markdown here." }}
         visibleDragbar={false}
-        height={600}
+        height={1000}
         value={value}
         fullscreen={true}
+        commands={[
+          commands.bold,
+          commands.italic,
+          commands.strikethrough,
+          commands.hr,
+          commands.group([
+            commands.title1,
+            commands.title2,
+            commands.title3,
+            commands.title4,
+            commands.title5,
+            commands.title6
+          ], {
+            name: 'title',
+            groupName: 'title',
+            buttonProps: { 'aria-label': 'Insert title'}
+          }),
+          commands.divider,
+          commands.link,
+          commands.quote,
+          commands.code,
+          commands.codeBlock,
+          commands.image,
+          commands.divider,
+          commands.unorderedListCommand,
+          commands.orderedListCommand,
+          commands.checkedListCommand
+        ]}
         previewOptions={{
           components: {code: Code},
           // rehypePlugins: [[rehypeSanitize]]
         }}
-        style={{fontFamily:'Consolas,Courier,"Courier New",monospace'}}
       />
     </div>
   );

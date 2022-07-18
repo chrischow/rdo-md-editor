@@ -1,3 +1,7 @@
-/* textarea {
-  font-family: 'Consolas', 'Courier New', Courier, monospace!important;
-} */
+.w-md-editor-text-pre > code {
+  font-family: Consolas, 'Courier New', Courier, monospace !important;
+}
+
+.w-md-editor {
+  font-family: Consolas, 'Courier New', Courier, monospace !important;
+}
